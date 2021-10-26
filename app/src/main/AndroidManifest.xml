@@ -26,10 +26,14 @@
             </intent-filter>
         </activity>
         <meta-data
+            android:exported="true"
+
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/admobappid"/>
 
         <meta-data
+            android:exported="true"
+
             android:name="applovin.sdk.key"
             android:value="@string/sdk_key_applovin" />
 
