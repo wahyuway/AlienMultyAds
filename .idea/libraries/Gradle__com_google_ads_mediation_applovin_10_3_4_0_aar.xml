@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.ads.mediation:applovin:10.3.4.0@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/ba5b547ec61b22295bd3538b4ee43dbc/transformed/applovin-10.3.4.0/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a5c3c142c8f121a64476e6c6b3b3bfcd/applovin-10.3.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7c3978ff01838d2a58fea3630e5b7b50/transformed/applovin-10.3.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ba5b547ec61b22295bd3538b4ee43dbc/transformed/applovin-10.3.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4513901cdd71070ed4641a9d67f51ab2/transformed/applovin-10.3.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ba5b547ec61b22295bd3538b4ee43dbc/transformed/applovin-10.3.4.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/ba5b547ec61b22295bd3538b4ee43dbc/transformed/applovin-10.3.4.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.ads.mediation/applovin/10.3.4.0/710a70213a312200e3106a24eec5126ac7b152ee/applovin-10.3.4.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

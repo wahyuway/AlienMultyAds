@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.unity3d.mediation:admob-adapter:0.2.1@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bf2a884bdc3f7291fed4a936d4ea084a/transformed/admob-adapter-0.2.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/8c89180cbf8364c03dbe048f1636e2a3/transformed/admob-adapter-0.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8c89180cbf8364c03dbe048f1636e2a3/transformed/admob-adapter-0.2.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8c89180cbf8364c03dbe048f1636e2a3/transformed/admob-adapter-0.2.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

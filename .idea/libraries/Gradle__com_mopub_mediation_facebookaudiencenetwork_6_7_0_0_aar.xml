@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.mopub.mediation:facebookaudiencenetwork:6.7.0.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7b9fa8d5b7904ddda8cd33ef9a64aa66/transformed/facebookaudiencenetwork-6.7.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b171acdb488f3b13ccc1f6228fbe9880/transformed/facebookaudiencenetwork-6.7.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d6e396b4b03214ac8a918ef574fefb46/transformed/facebookaudiencenetwork-6.7.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b171acdb488f3b13ccc1f6228fbe9880/transformed/facebookaudiencenetwork-6.7.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b171acdb488f3b13ccc1f6228fbe9880/transformed/facebookaudiencenetwork-6.7.0.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

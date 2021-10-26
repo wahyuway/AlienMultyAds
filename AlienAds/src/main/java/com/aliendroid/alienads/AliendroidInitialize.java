@@ -20,6 +20,10 @@ import com.mopub.mobileads.FacebookBanner;
 import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.StartAppSDK;
 import com.unity3d.ads.UnityAds;
+import com.unity3d.mediation.IInitializationListener;
+import com.unity3d.mediation.InitializationConfiguration;
+import com.unity3d.mediation.UnityMediation;
+import com.unity3d.mediation.errors.SdkInitializationError;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -83,7 +87,27 @@ public class AliendroidInitialize {
                 }
                 break;
             case "UNITY":
-                UnityAds.initialize (activity, idInitialize, BuildConfig.DEBUG);
+                UnityAds.initialize (activity.getApplicationContext(), idInitialize, BuildConfig.DEBUG);
+                break;
+            case "UNITY-M":
+                InitializationConfiguration configuration = InitializationConfiguration.builder()
+                       .setGameId(idInitialize)
+                       .setInitializationListener(new IInitializationListener() {
+
+                           @Override
+                           public void onInitializationComplete() {
+                               // Unity Mediation is initialized. Try loading an ad.
+                               System.out.println("Unity Mediation is successfully initialized.");
+                           }
+
+                           @Override
+                           public void onInitializationFailed(SdkInitializationError errorCode, String msg) {
+                               // Unity Mediation failed to initialize. Printing failure reason...
+                               System.out.println("Unity Mediation Failed to Initialize : " + msg);
+                           }
+                       }).build();
+
+                UnityMediation.initialize(configuration);
                 break;
         }
     }
@@ -144,7 +168,27 @@ public class AliendroidInitialize {
                 }
                 break;
             case "UNITY":
-                UnityAds.initialize (activity, idInitialize, BuildConfig.DEBUG);
+                UnityAds.initialize (activity.getApplicationContext(), idInitialize, BuildConfig.DEBUG);
+                break;
+            case "UNITY-M":
+                InitializationConfiguration configuration = InitializationConfiguration.builder()
+                        .setGameId(idInitialize)
+                        .setInitializationListener(new IInitializationListener() {
+
+                            @Override
+                            public void onInitializationComplete() {
+                                // Unity Mediation is initialized. Try loading an ad.
+                                System.out.println("Unity Mediation is successfully initialized.");
+                            }
+
+                            @Override
+                            public void onInitializationFailed(SdkInitializationError errorCode, String msg) {
+                                // Unity Mediation failed to initialize. Printing failure reason...
+                                System.out.println("Unity Mediation Failed to Initialize : " + msg);
+                            }
+                        }).build();
+
+                UnityMediation.initialize(configuration);
                 break;
         }
     }
@@ -206,7 +250,27 @@ public class AliendroidInitialize {
                 }
                 break;
             case "UNITY":
-                UnityAds.initialize (activity, idInitialize, BuildConfig.DEBUG);
+                UnityAds.initialize (activity.getApplicationContext(), idInitialize, BuildConfig.DEBUG);
+                break;
+            case "UNITY-M":
+                InitializationConfiguration configuration = InitializationConfiguration.builder()
+                        .setGameId(idInitialize)
+                        .setInitializationListener(new IInitializationListener() {
+
+                            @Override
+                            public void onInitializationComplete() {
+                                // Unity Mediation is initialized. Try loading an ad.
+                                System.out.println("Unity Mediation is successfully initialized.");
+                            }
+
+                            @Override
+                            public void onInitializationFailed(SdkInitializationError errorCode, String msg) {
+                                // Unity Mediation failed to initialize. Printing failure reason...
+                                System.out.println("Unity Mediation Failed to Initialize : " + msg);
+                            }
+                        }).build();
+
+                UnityMediation.initialize(configuration);
                 break;
         }
     }
@@ -268,7 +332,27 @@ public class AliendroidInitialize {
                 }
                 break;
             case "UNITY":
-                UnityAds.initialize (activity, idInitialize, BuildConfig.DEBUG);
+                UnityAds.initialize (activity.getApplicationContext(), idInitialize, BuildConfig.DEBUG);
+                break;
+            case "UNITY-M":
+                InitializationConfiguration configuration = InitializationConfiguration.builder()
+                        .setGameId(idInitialize)
+                        .setInitializationListener(new IInitializationListener() {
+
+                            @Override
+                            public void onInitializationComplete() {
+                                // Unity Mediation is initialized. Try loading an ad.
+                                System.out.println("Unity Mediation is successfully initialized.");
+                            }
+
+                            @Override
+                            public void onInitializationFailed(SdkInitializationError errorCode, String msg) {
+                                // Unity Mediation failed to initialize. Printing failure reason...
+                                System.out.println("Unity Mediation Failed to Initialize : " + msg);
+                            }
+                        }).build();
+
+                UnityMediation.initialize(configuration);
                 break;
         }
     }
@@ -330,7 +414,27 @@ public class AliendroidInitialize {
                 }
                 break;
             case "UNITY":
-                UnityAds.initialize (activity, idInitializeBackupAds, BuildConfig.DEBUG);
+                UnityAds.initialize (activity.getApplicationContext(), idInitialize, BuildConfig.DEBUG);
+                break;
+            case "UNITY-M":
+                InitializationConfiguration configuration = InitializationConfiguration.builder()
+                        .setGameId(idInitialize)
+                        .setInitializationListener(new IInitializationListener() {
+
+                            @Override
+                            public void onInitializationComplete() {
+                                // Unity Mediation is initialized. Try loading an ad.
+                                System.out.println("Unity Mediation is successfully initialized.");
+                            }
+
+                            @Override
+                            public void onInitializationFailed(SdkInitializationError errorCode, String msg) {
+                                // Unity Mediation failed to initialize. Printing failure reason...
+                                System.out.println("Unity Mediation Failed to Initialize : " + msg);
+                            }
+                        }).build();
+
+                UnityMediation.initialize(configuration);
                 break;
         }
     }
@@ -392,7 +496,27 @@ public class AliendroidInitialize {
                 }
                 break;
             case "UNITY":
-                UnityAds.initialize (activity, idInitializeBackupAds, BuildConfig.DEBUG);
+                UnityAds.initialize (activity.getApplicationContext(), idInitialize, BuildConfig.DEBUG);
+                break;
+            case "UNITY-M":
+                InitializationConfiguration configuration = InitializationConfiguration.builder()
+                        .setGameId(idInitialize)
+                        .setInitializationListener(new IInitializationListener() {
+
+                            @Override
+                            public void onInitializationComplete() {
+                                // Unity Mediation is initialized. Try loading an ad.
+                                System.out.println("Unity Mediation is successfully initialized.");
+                            }
+
+                            @Override
+                            public void onInitializationFailed(SdkInitializationError errorCode, String msg) {
+                                // Unity Mediation failed to initialize. Printing failure reason...
+                                System.out.println("Unity Mediation Failed to Initialize : " + msg);
+                            }
+                        }).build();
+
+                UnityMediation.initialize(configuration);
                 break;
         }
     }
@@ -454,13 +578,33 @@ public class AliendroidInitialize {
                 }
                 break;
             case "UNITY":
-                UnityAds.initialize (activity, idInitializeBackupAds, BuildConfig.DEBUG);
+                UnityAds.initialize (activity.getApplicationContext(), idInitialize, BuildConfig.DEBUG);
+                break;
+            case "UNITY-M":
+                InitializationConfiguration configuration = InitializationConfiguration.builder()
+                        .setGameId(idInitialize)
+                        .setInitializationListener(new IInitializationListener() {
+
+                            @Override
+                            public void onInitializationComplete() {
+                                // Unity Mediation is initialized. Try loading an ad.
+                                System.out.println("Unity Mediation is successfully initialized.");
+                            }
+
+                            @Override
+                            public void onInitializationFailed(SdkInitializationError errorCode, String msg) {
+                                // Unity Mediation failed to initialize. Printing failure reason...
+                                System.out.println("Unity Mediation Failed to Initialize : " + msg);
+                            }
+                        }).build();
+
+                UnityMediation.initialize(configuration);
                 break;
         }
     }
 
     public static void SelectAdsUnity(Activity activity, String selectAdsBackup, String idInitialize, String idInitializeBackupAds) {
-        UnityAds.initialize (activity, idInitialize, BuildConfig.DEBUG);
+        UnityAds.initialize (activity.getApplicationContext(), idInitialize, BuildConfig.DEBUG);
         switch (selectAdsBackup) {
             case "APPLOVIN-D":
                 AppLovinSdk.initializeSdk(activity);
@@ -518,9 +662,111 @@ public class AliendroidInitialize {
                 IronSource.init(activity, idInitializeBackupAds);
                 IntegrationHelper.validateIntegration(activity);
                 break;
+            case "UNITY-M":
+                InitializationConfiguration configuration = InitializationConfiguration.builder()
+                        .setGameId(idInitialize)
+                        .setInitializationListener(new IInitializationListener() {
+
+                            @Override
+                            public void onInitializationComplete() {
+                                // Unity Mediation is initialized. Try loading an ad.
+                                System.out.println("Unity Mediation is successfully initialized.");
+                            }
+
+                            @Override
+                            public void onInitializationFailed(SdkInitializationError errorCode, String msg) {
+                                // Unity Mediation failed to initialize. Printing failure reason...
+                                System.out.println("Unity Mediation Failed to Initialize : " + msg);
+                            }
+                        }).build();
+
+                UnityMediation.initialize(configuration);
+                break;
         }
     }
 
+    public static void SelectAdsUnityMediation(Activity activity, String selectAdsBackup, String idInitialize, String idInitializeBackupAds) {
+        InitializationConfiguration configuration = InitializationConfiguration.builder()
+                .setGameId(idInitialize)
+                .setInitializationListener(new IInitializationListener() {
+
+                    @Override
+                    public void onInitializationComplete() {
+                        // Unity Mediation is initialized. Try loading an ad.
+                        System.out.println("Unity Mediation is successfully initialized.");
+                    }
+
+                    @Override
+                    public void onInitializationFailed(SdkInitializationError errorCode, String msg) {
+                        // Unity Mediation failed to initialize. Printing failure reason...
+                        System.out.println("Unity Mediation Failed to Initialize : " + msg);
+                    }
+                }).build();
+
+        UnityMediation.initialize(configuration);
+
+        switch (selectAdsBackup) {
+            case "APPLOVIN-D":
+                AppLovinSdk.initializeSdk(activity);
+                break;
+            case "APPLOVIN-M":
+                AdSettings.setDataProcessingOptions(new String[]{});
+                AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
+                AppLovinSdk sdk = AppLovinSdk.getInstance(activity);
+                sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
+                break;
+            case "STARTAPP":
+                StartAppSDK.init(activity, idInitializeBackupAds, true);
+                StartAppAd.disableSplash();
+                StartAppSDK.setUserConsent(activity,
+                        "pas",
+                        System.currentTimeMillis(),
+                        true);
+                break;
+            case "MOPUB":
+                Map<String, String> facebookBanner = new HashMap<>();
+                facebookBanner.put("native_banner", "true");
+                SdkConfiguration.Builder configBuilder = new SdkConfiguration.Builder(idInitializeBackupAds);
+                configBuilder.withMediatedNetworkConfiguration(FacebookBanner.class.getName(), facebookBanner);
+                MoPub.initializeSdk(activity, configBuilder.build(), initSdkListener());
+                break;
+            case "ADMOB":
+            case "GOOGLE-ADS":
+                MobileAds.initialize(activity, new OnInitializationCompleteListener() {
+                    @Override
+                    public void onInitializationComplete(InitializationStatus initializationStatus) {
+                        Map<String, AdapterStatus> statusMap = initializationStatus.getAdapterStatusMap();
+                        for (String adapterClass : statusMap.keySet()) {
+                            AdapterStatus status = statusMap.get(adapterClass);
+                            Log.d("MyApp", String.format(
+                                    "Adapter name: %s, Description: %s, Latency: %d",
+                                    adapterClass, status.getDescription(), status.getLatency()));
+                        }
+                    }
+                });
+                break;
+            case "FACEBOOK":
+                if (!AudienceNetworkAds.isInitialized(activity)) {
+                    if (BuildConfig.DEBUG) {
+                        AdSettings.turnOnSDKDebugger(activity);
+                        AdSettings.setTestMode(true);
+                    }
+
+                    AudienceNetworkAds
+                            .buildInitSettings(activity)
+                            .withInitListener(new AudienceNetworkInitializeHelper())
+                            .initialize();
+                }
+                break;
+            case "IRON":
+                IronSource.init(activity, idInitializeBackupAds);
+                IntegrationHelper.validateIntegration(activity);
+                break;
+            case "UNITY":
+                UnityAds.initialize (activity.getApplicationContext(), idInitialize, BuildConfig.DEBUG);
+                break;
+        }
+    }
 
     public static void SelectAdsFAN(Activity activity, String selectAdsBackup, String idInitializeBackupAds) {
         if (!AudienceNetworkAds.isInitialized(activity)) {
@@ -579,7 +825,27 @@ public class AliendroidInitialize {
                 IntegrationHelper.validateIntegration(activity);
                 break;
             case "UNITY":
-                UnityAds.initialize (activity, idInitializeBackupAds, BuildConfig.DEBUG);
+                UnityAds.initialize (activity.getApplicationContext(), idInitializeBackupAds, BuildConfig.DEBUG);
+                break;
+            case "UNITY-M":
+                InitializationConfiguration configuration = InitializationConfiguration.builder()
+                        .setGameId(idInitializeBackupAds)
+                        .setInitializationListener(new IInitializationListener() {
+
+                            @Override
+                            public void onInitializationComplete() {
+                                // Unity Mediation is initialized. Try loading an ad.
+                                System.out.println("Unity Mediation is successfully initialized.");
+                            }
+
+                            @Override
+                            public void onInitializationFailed(SdkInitializationError errorCode, String msg) {
+                                // Unity Mediation failed to initialize. Printing failure reason...
+                                System.out.println("Unity Mediation Failed to Initialize : " + msg);
+                            }
+                        }).build();
+
+                UnityMediation.initialize(configuration);
                 break;
         }
     }

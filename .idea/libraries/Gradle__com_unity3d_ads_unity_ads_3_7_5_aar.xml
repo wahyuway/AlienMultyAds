@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="Gradle: com.unity3d.ads:unity-ads:3.7.5@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/07558168f7e6d83df386100a6fbe354f/transformed/unity-ads-3.7.5/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c2b46b8f24687a781839777ac0ce3155/transformed/unity-ads-3.7.5/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ae90353223e79528d6b1a4be1722d918/transformed/unity-ads-3.7.5/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c2b46b8f24687a781839777ac0ce3155/transformed/unity-ads-3.7.5/jars/libs/unity-scaradapter-1920.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c2b46b8f24687a781839777ac0ce3155/transformed/unity-ads-3.7.5/jars/libs/unity-scaradapter-1950.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c2b46b8f24687a781839777ac0ce3155/transformed/unity-ads-3.7.5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c2b46b8f24687a781839777ac0ce3155/transformed/unity-ads-3.7.5/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c2b46b8f24687a781839777ac0ce3155/transformed/unity-ads-3.7.5/jars/libs/unity-scaradapter-2000.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c2b46b8f24687a781839777ac0ce3155/transformed/unity-ads-3.7.5/jars/libs/unity-scaradapter-common.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.unity3d.ads/unity-ads/3.7.5/7969665d6e5cb9a42c9a2ca9f416179fd99f4b12/unity-ads-3.7.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.unity3d.ads/unity-ads/3.7.5/cf02ff05d83d0673f8db275c88f95cf68bdad77e/unity-ads-3.7.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

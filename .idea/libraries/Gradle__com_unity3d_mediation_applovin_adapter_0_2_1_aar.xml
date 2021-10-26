@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.unity3d.mediation:applovin-adapter:0.2.1@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a29ad93e72faf3ef5c47fe65ac3c3d65/transformed/applovin-adapter-0.2.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ccfcde6e58c97dffd8566ae96e554a12/transformed/applovin-adapter-0.2.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ccfcde6e58c97dffd8566ae96e554a12/transformed/applovin-adapter-0.2.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/ccfcde6e58c97dffd8566ae96e554a12/transformed/applovin-adapter-0.2.1/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.unity3d.mediation:ironsource-adapter:0.2.1@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/047e2bfc8e2d4025a7d46183e67a3576/transformed/ironsource-adapter-0.2.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5057acc21dd410ea959d5d10a01f264e/transformed/ironsource-adapter-0.2.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/5057acc21dd410ea959d5d10a01f264e/transformed/ironsource-adapter-0.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5057acc21dd410ea959d5d10a01f264e/transformed/ironsource-adapter-0.2.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

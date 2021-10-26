@@ -20,6 +20,7 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
 import com.google.android.gms.ads.admanager.AdManagerAdRequest;
 import com.google.android.gms.ads.rewarded.RewardItem;
+
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.ironsource.mediationsdk.IronSource;
@@ -35,6 +36,11 @@ import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
 import com.startapp.sdk.adsbase.adlisteners.VideoListener;
 import com.unity3d.ads.IUnityAdsListener;
 import com.unity3d.ads.UnityAds;
+import com.unity3d.mediation.IReward;
+import com.unity3d.mediation.IRewardedAdLoadListener;
+import com.unity3d.mediation.IRewardedAdShowListener;
+import com.unity3d.mediation.errors.LoadError;
+import com.unity3d.mediation.errors.ShowError;
 
 import java.util.Map;
 import java.util.Set;
@@ -46,6 +52,7 @@ public class AliendroidReward {
     public static AppLovinIncentivizedInterstitial incentivizedInterstitial;
     public static StartAppAd rewardedVideo;
     private static RewardedAd mRewardedAd;
+    private static com.unity3d.mediation.RewardedAd unityRewardedAd;
 
     public static void LoadRewardAdmob(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -211,6 +218,25 @@ public class AliendroidReward {
                     }
                 });
                 break;
+            case "UNITY-M":
+                unityRewardedAd = new com.unity3d.mediation.RewardedAd(activity, idBackupReward);
+
+                // Implement a load listener interface:
+                final IRewardedAdLoadListener loadListener = new IRewardedAdLoadListener() {
+                    @Override
+                    public void onRewardedLoaded(com.unity3d.mediation.RewardedAd rewardedAd) {
+                        // Execute logic when the ad successfully loads.
+                    }
+
+                    @Override
+                    public void onRewardedFailedLoad(com.unity3d.mediation.RewardedAd rewardedAd, LoadError loadError, String s) {
+                        // Execute logic when the ad fails to load.
+                    }
+                };
+
+                // Load an ad:
+                unityRewardedAd.load(loadListener);
+                break;
 
         }
     }
@@ -344,6 +370,280 @@ public class AliendroidReward {
                 }
             }
         });
+
+        switch (selectBackupAds) {
+            case "ADMOB":
+            case "GOOGLE-ADS":
+                AdRequest adRequest = new AdRequest.Builder().build();
+                RewardedAd.load(activity, idBackupReward,
+                        adRequest, new RewardedAdLoadCallback() {
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                mRewardedAd = null;
+                            }
+
+                            @Override
+                            public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                                mRewardedAd = rewardedAd;
+
+                            }
+                        });
+                break;
+            case "APPLOVIN-M":
+                rewardedAd = MaxRewardedAd.getInstance(idBackupReward, activity);
+                rewardedAd.loadAd();
+                MaxRewardedAdListener maxRewardedAdListener = new MaxRewardedAdListener() {
+                    @Override
+                    public void onRewardedVideoStarted(MaxAd ad) {
+
+                    }
+
+                    @Override
+                    public void onRewardedVideoCompleted(MaxAd ad) {
+                        unlockreward = true;
+                    }
+
+                    @Override
+                    public void onUserRewarded(MaxAd ad, MaxReward reward) {
+
+                    }
+
+                    @Override
+                    public void onAdLoaded(MaxAd ad) {
+
+                    }
+
+                    @Override
+                    public void onAdDisplayed(MaxAd ad) {
+
+                    }
+
+                    @Override
+                    public void onAdHidden(MaxAd ad) {
+
+                    }
+
+                    @Override
+                    public void onAdClicked(MaxAd ad) {
+
+                    }
+
+                    @Override
+                    public void onAdLoadFailed(String adUnitId, MaxError error) {
+
+                    }
+
+                    @Override
+                    public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+
+                    }
+                };
+                rewardedAd.setListener(maxRewardedAdListener);
+                break;
+            case "MOPUB":
+                MoPubRewardedAds.loadRewardedAd(idBackupReward);
+                break;
+            case "APPLOVIN-D":
+                incentivizedInterstitial = AppLovinIncentivizedInterstitial.create(idBackupReward, AppLovinSdk.getInstance(activity));
+                incentivizedInterstitial.preload(new AppLovinAdLoadListener() {
+                    @Override
+                    public void adReceived(AppLovinAd appLovinAd) {
+                        // A rewarded video was successfully received.
+                    }
+
+                    @Override
+                    public void failedToReceiveAd(int errorCode) {
+                        // A rewarded video failed to load.
+                    }
+                });
+                break;
+            case "IRON":
+                IronSource.setRewardedVideoListener(new RewardedVideoListener() {
+                    @Override
+                    public void onRewardedVideoAdOpened() {
+                    }
+
+                    @Override
+                    public void onRewardedVideoAdClosed() {
+                    }
+
+                    @Override
+                    public void onRewardedVideoAvailabilityChanged(boolean available) {
+                    }
+
+                    @Override
+                    public void onRewardedVideoAdRewarded(Placement placement) {
+                        unlockreward = true;
+                    }
+
+                    @Override
+                    public void onRewardedVideoAdShowFailed(IronSourceError error) {
+                    }
+
+                    @Override
+                    public void onRewardedVideoAdClicked(Placement placement) {
+                    }
+
+                    @Override
+                    public void onRewardedVideoAdStarted() {
+                    }
+
+                    @Override
+                    public void onRewardedVideoAdEnded() {
+                    }
+                });
+                break;
+            case "STARTAPP":
+                rewardedVideo = new StartAppAd(activity);
+                rewardedVideo.setVideoListener(new VideoListener() {
+                    @Override
+                    public void onVideoCompleted() {
+                        unlockreward = true;
+                    }
+                });
+
+                rewardedVideo.loadAd(StartAppAd.AdMode.REWARDED_VIDEO, new AdEventListener() {
+                    @Override
+                    public void onReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
+
+                    }
+
+                    @Override
+                    public void onFailedToReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
+
+                    }
+                });
+                break;
+
+        }
+    }
+
+    public static void LoadRewardUnityMediation(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
+        unityRewardedAd = new com.unity3d.mediation.RewardedAd(activity, idBackupReward);
+
+        // Implement a load listener interface:
+        final IRewardedAdLoadListener loadListener = new IRewardedAdLoadListener() {
+            @Override
+            public void onRewardedLoaded(com.unity3d.mediation.RewardedAd rewardedAd) {
+                // Execute logic when the ad successfully loads.
+            }
+
+            @Override
+            public void onRewardedFailedLoad(com.unity3d.mediation.RewardedAd rAd, LoadError loadError, String s) {
+                // Execute logic when the ad fails to load.
+                switch (selectBackupAds) {
+                    case "GOOGLE-ADS":
+                    case "ADMOB":
+                        if (mRewardedAd != null) {
+                            Activity activityContext = activity;
+                            mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
+                                @Override
+                                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                                    unlockreward = true;
+                                }
+                            });
+                        }
+                        break;
+                    case "MOPUB":
+                        MoPubRewardedAds.showRewardedAd(idBackupReward);
+                        rewardedAdListener = new MoPubRewardedAdListener() {
+                            @Override
+                            public void onRewardedAdLoadSuccess(String adUnitId) {
+                                // Called when the ad for the given adUnitId has loaded. At this point you should be able to call MoPubRewardedAds.showRewardedAd() to show the ad.
+                            }
+
+                            @Override
+                            public void onRewardedAdLoadFailure(String adUnitId, MoPubErrorCode errorCode) {
+                            }
+
+                            @Override
+                            public void onRewardedAdStarted(String adUnitId) {
+                                // Called when a rewarded ad starts playing.
+                            }
+
+                            @Override
+                            public void onRewardedAdShowError(String adUnitId, MoPubErrorCode errorCode) {
+                                //  Called when there is an error while attempting to show the ad.
+                            }
+
+                            @Override
+                            public void onRewardedAdClicked(@NonNull String adUnitId) {
+                                //  Called when a rewarded ad is clicked.
+                            }
+
+                            @Override
+                            public void onRewardedAdClosed(String adUnitId) {
+                                // Called when a rewarded ad is closed. At this point your application should resume.
+                            }
+
+                            @Override
+                            public void onRewardedAdCompleted(Set<String> adUnitIds, MoPubReward reward) {
+                                unlockreward = true;
+
+                            }
+                        };
+                        MoPubRewardedAds.setRewardedAdListener(rewardedAdListener);
+                        break;
+                    case "APPLOVIN-M":
+                        if (rewardedAd.isReady()) {
+                            rewardedAd.showAd();
+                        }
+                        break;
+                    case "APPLOVIN-D":
+                        if (incentivizedInterstitial != null) {
+                            // A rewarded video is available.  Call the show method with the listeners you want to use.
+                            // We will use the display listener to preload the next rewarded video when this one finishes.
+                            incentivizedInterstitial.show(activity, new AppLovinAdRewardListener() {
+                                @Override
+                                public void userRewardVerified(AppLovinAd ad, Map<String, String> response) {
+                                    unlockreward = true;
+                                }
+
+                                @Override
+                                public void userOverQuota(AppLovinAd ad, Map<String, String> response) {
+
+                                }
+
+                                @Override
+                                public void userRewardRejected(AppLovinAd ad, Map<String, String> response) {
+
+                                }
+
+                                @Override
+                                public void validationRequestFailed(AppLovinAd ad, int errorCode) {
+
+                                }
+
+                                @Override
+                                public void userDeclinedToViewAd(AppLovinAd ad) {
+
+                                }
+                            }, null, new AppLovinAdDisplayListener() {
+                                @Override
+                                public void adDisplayed(AppLovinAd appLovinAd) {
+                                    // A rewarded video is being displayed.
+                                }
+
+                                @Override
+                                public void adHidden(AppLovinAd appLovinAd) {
+                                    // A rewarded video was closed.  Preload the next video now.  We won't use a load listener.
+                                    incentivizedInterstitial.preload(null);
+                                }
+                            });
+                        }
+                        break;
+                    case "STARTAPP":
+                        rewardedVideo.showAd();
+                        break;
+                    case "IRON":
+                        IronSource.showRewardedVideo(idBackupReward);
+                        break;
+                }
+            }
+        };
+
+        // Load an ad:
+        unityRewardedAd.load(loadListener);
 
         switch (selectBackupAds) {
             case "ADMOB":
@@ -656,7 +956,25 @@ public class AliendroidReward {
                     }
                 });
                 break;
+            case "UNITY-M":
+                unityRewardedAd = new com.unity3d.mediation.RewardedAd(activity, idBackupReward);
 
+                // Implement a load listener interface:
+                final IRewardedAdLoadListener loadListener = new IRewardedAdLoadListener() {
+                    @Override
+                    public void onRewardedLoaded(com.unity3d.mediation.RewardedAd rewardedAd) {
+                        // Execute logic when the ad successfully loads.
+                    }
+
+                    @Override
+                    public void onRewardedFailedLoad(com.unity3d.mediation.RewardedAd rewardedAd, LoadError loadError, String s) {
+                        // Execute logic when the ad fails to load.
+                    }
+                };
+
+                // Load an ad:
+                unityRewardedAd.load(loadListener);
+                break;
         }
     }
 
@@ -826,7 +1144,25 @@ public class AliendroidReward {
                     }
                 });
                 break;
+            case "UNITY-M":
+                unityRewardedAd = new com.unity3d.mediation.RewardedAd(activity, idBackupReward);
 
+                // Implement a load listener interface:
+                final IRewardedAdLoadListener loadListener = new IRewardedAdLoadListener() {
+                    @Override
+                    public void onRewardedLoaded(com.unity3d.mediation.RewardedAd rewardedAd) {
+                        // Execute logic when the ad successfully loads.
+                    }
+
+                    @Override
+                    public void onRewardedFailedLoad(com.unity3d.mediation.RewardedAd rewardedAd, LoadError loadError, String s) {
+                        // Execute logic when the ad fails to load.
+                    }
+                };
+
+                // Load an ad:
+                unityRewardedAd.load(loadListener);
+                break;
         }
     }
 
@@ -996,7 +1332,25 @@ public class AliendroidReward {
                     }
                 });
                 break;
+            case "UNITY-M":
+                unityRewardedAd = new com.unity3d.mediation.RewardedAd(activity, idBackupReward);
 
+                // Implement a load listener interface:
+                final IRewardedAdLoadListener loadListener = new IRewardedAdLoadListener() {
+                    @Override
+                    public void onRewardedLoaded(com.unity3d.mediation.RewardedAd rewardedAd) {
+                        // Execute logic when the ad successfully loads.
+                    }
+
+                    @Override
+                    public void onRewardedFailedLoad(com.unity3d.mediation.RewardedAd rewardedAd, LoadError loadError, String s) {
+                        // Execute logic when the ad fails to load.
+                    }
+                };
+
+                // Load an ad:
+                unityRewardedAd.load(loadListener);
+                break;
         }
     }
 
@@ -1166,6 +1520,26 @@ public class AliendroidReward {
                     }
                 });
                 break;
+            case "UNITY-M":
+                unityRewardedAd = new com.unity3d.mediation.RewardedAd(activity, idBackupReward);
+
+                // Implement a load listener interface:
+                final IRewardedAdLoadListener loadListener = new IRewardedAdLoadListener() {
+                    @Override
+                    public void onRewardedLoaded(com.unity3d.mediation.RewardedAd rewardedAd) {
+                        // Execute logic when the ad successfully loads.
+
+                    }
+
+                    @Override
+                    public void onRewardedFailedLoad(com.unity3d.mediation.RewardedAd rewardedAd, LoadError loadError, String s) {
+                        // Execute logic when the ad fails to load.
+                    }
+                };
+
+                // Load an ad:
+                unityRewardedAd.load(loadListener);
+                break;
         }
     }
 
@@ -1298,6 +1672,26 @@ public class AliendroidReward {
                         if (UnityAds.isReady (idBackupReward)) {
                             UnityAds.show (activity, idBackupReward);
                         }
+                        break;
+                    case "UNITY-M":
+                        unityRewardedAd = new com.unity3d.mediation.RewardedAd(activity, idBackupReward);
+
+                        // Implement a load listener interface:
+                        final IRewardedAdLoadListener loadListener = new IRewardedAdLoadListener() {
+                            @Override
+                            public void onRewardedLoaded(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // Execute logic when the ad successfully loads.
+
+                            }
+
+                            @Override
+                            public void onRewardedFailedLoad(com.unity3d.mediation.RewardedAd rewardedAd, LoadError loadError, String s) {
+                                // Execute logic when the ad fails to load.
+                            }
+                        };
+
+                        // Load an ad:
+                        unityRewardedAd.load(loadListener);
                         break;
                 }
             }
@@ -1444,6 +1838,26 @@ public class AliendroidReward {
 
                     }
                 });
+                break;
+            case "UNITY-M":
+                unityRewardedAd = new com.unity3d.mediation.RewardedAd(activity, idBackupReward);
+
+                // Implement a load listener interface:
+                final IRewardedAdLoadListener loadListener = new IRewardedAdLoadListener() {
+                    @Override
+                    public void onRewardedLoaded(com.unity3d.mediation.RewardedAd rewardedAd) {
+                        // Execute logic when the ad successfully loads.
+
+                    }
+
+                    @Override
+                    public void onRewardedFailedLoad(com.unity3d.mediation.RewardedAd rewardedAd, LoadError loadError, String s) {
+                        // Execute logic when the ad fails to load.
+                    }
+                };
+
+                // Load an ad:
+                unityRewardedAd.load(loadListener);
                 break;
 
         }
@@ -1616,6 +2030,26 @@ public class AliendroidReward {
                     }
                 });
                 break;
+            case "UNITY-M":
+                unityRewardedAd = new com.unity3d.mediation.RewardedAd(activity, idBackupReward);
+
+                // Implement a load listener interface:
+                final IRewardedAdLoadListener loadListener = new IRewardedAdLoadListener() {
+                    @Override
+                    public void onRewardedLoaded(com.unity3d.mediation.RewardedAd rewardedAd) {
+                        // Execute logic when the ad successfully loads.
+
+                    }
+
+                    @Override
+                    public void onRewardedFailedLoad(com.unity3d.mediation.RewardedAd rewardedAd, LoadError loadError, String s) {
+                        // Execute logic when the ad fails to load.
+                    }
+                };
+
+                // Load an ad:
+                unityRewardedAd.load(loadListener);
+                break;
 
         }
     }
@@ -1736,6 +2170,38 @@ public class AliendroidReward {
                         UnityAds.show (activity, idBackupReward);
                     }
                     break;
+                case "UNITY-M":
+                    if (unityRewardedAd != null)
+                        unityRewardedAd.show(new IRewardedAdShowListener() {
+                            @Override
+                            public void onRewardedShowed(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has showed
+                            }
+
+                            @Override
+                            public void onRewardedClicked(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has been clicked
+                            }
+
+                            @Override
+                            public void onRewardedClosed(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has been closed
+                                unlockreward=true;
+                            }
+
+                            @Override
+                            public void onRewardedFailedShow(com.unity3d.mediation.RewardedAd rewardedAd, ShowError error, String msg) {
+                                // ad has failed to show
+                                // use the message and ShowError enum to determine ad network and cause
+                            }
+
+                            @Override
+                            public void onUserRewarded(com.unity3d.mediation.RewardedAd rewardedAd, IReward reward) {
+                                // A reward may be issued based on the reward callback.
+                                // Timing of this event may vary depending on the ad network to serve the impression.
+                            }
+                        });
+                    break;
             }
         }
     }
@@ -1853,6 +2319,38 @@ public class AliendroidReward {
                     if (UnityAds.isReady (idBackupReward)) {
                         UnityAds.show (activity, idBackupReward);
                     }
+                    break;
+                case "UNITY-M":
+                    if (unityRewardedAd != null)
+                        unityRewardedAd.show(new IRewardedAdShowListener() {
+                            @Override
+                            public void onRewardedShowed(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has showed
+                            }
+
+                            @Override
+                            public void onRewardedClicked(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has been clicked
+                            }
+
+                            @Override
+                            public void onRewardedClosed(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has been closed
+                                unlockreward=true;
+                            }
+
+                            @Override
+                            public void onRewardedFailedShow(com.unity3d.mediation.RewardedAd rewardedAd, ShowError error, String msg) {
+                                // ad has failed to show
+                                // use the message and ShowError enum to determine ad network and cause
+                            }
+
+                            @Override
+                            public void onUserRewarded(com.unity3d.mediation.RewardedAd rewardedAd, IReward reward) {
+                                // A reward may be issued based on the reward callback.
+                                // Timing of this event may vary depending on the ad network to serve the impression.
+                            }
+                        });
                     break;
             }
         }
@@ -1974,6 +2472,38 @@ public class AliendroidReward {
                         UnityAds.show (activity, idBackupReward);
                     }
                     break;
+                case "UNITY-M":
+                    if (unityRewardedAd != null)
+                        unityRewardedAd.show(new IRewardedAdShowListener() {
+                            @Override
+                            public void onRewardedShowed(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has showed
+                            }
+
+                            @Override
+                            public void onRewardedClicked(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has been clicked
+                            }
+
+                            @Override
+                            public void onRewardedClosed(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has been closed
+                                unlockreward=true;
+                            }
+
+                            @Override
+                            public void onRewardedFailedShow(com.unity3d.mediation.RewardedAd rewardedAd, ShowError error, String msg) {
+                                // ad has failed to show
+                                // use the message and ShowError enum to determine ad network and cause
+                            }
+
+                            @Override
+                            public void onUserRewarded(com.unity3d.mediation.RewardedAd rewardedAd, IReward reward) {
+                                // A reward may be issued based on the reward callback.
+                                // Timing of this event may vary depending on the ad network to serve the impression.
+                            }
+                        });
+                    break;
             }
         }
     }
@@ -2093,6 +2623,38 @@ public class AliendroidReward {
                         UnityAds.show (activity, idBackupReward);
                     }
                     break;
+                case "UNITY-M":
+                    if (unityRewardedAd != null)
+                        unityRewardedAd.show(new IRewardedAdShowListener() {
+                            @Override
+                            public void onRewardedShowed(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has showed
+                            }
+
+                            @Override
+                            public void onRewardedClicked(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has been clicked
+                            }
+
+                            @Override
+                            public void onRewardedClosed(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has been closed
+                                unlockreward=true;
+                            }
+
+                            @Override
+                            public void onRewardedFailedShow(com.unity3d.mediation.RewardedAd rewardedAd, ShowError error, String msg) {
+                                // ad has failed to show
+                                // use the message and ShowError enum to determine ad network and cause
+                            }
+
+                            @Override
+                            public void onUserRewarded(com.unity3d.mediation.RewardedAd rewardedAd, IReward reward) {
+                                // A reward may be issued based on the reward callback.
+                                // Timing of this event may vary depending on the ad network to serve the impression.
+                            }
+                        });
+                    break;
             }
         }
     }
@@ -2191,6 +2753,38 @@ public class AliendroidReward {
                             UnityAds.show (activity, idBackupReward);
                         }
                         break;
+                    case "UNITY-M":
+                        if (unityRewardedAd != null)
+                            unityRewardedAd.show(new IRewardedAdShowListener() {
+                                @Override
+                                public void onRewardedShowed(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                    // ad has showed
+                                }
+
+                                @Override
+                                public void onRewardedClicked(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                    // ad has been clicked
+                                }
+
+                                @Override
+                                public void onRewardedClosed(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                    // ad has been closed
+                                    unlockreward=true;
+                                }
+
+                                @Override
+                                public void onRewardedFailedShow(com.unity3d.mediation.RewardedAd rewardedAd, ShowError error, String msg) {
+                                    // ad has failed to show
+                                    // use the message and ShowError enum to determine ad network and cause
+                                }
+
+                                @Override
+                                public void onUserRewarded(com.unity3d.mediation.RewardedAd rewardedAd, IReward reward) {
+                                    // A reward may be issued based on the reward callback.
+                                    // Timing of this event may vary depending on the ad network to serve the impression.
+                                }
+                            });
+                        break;
                 }
             }
 
@@ -2226,6 +2820,43 @@ public class AliendroidReward {
             LoadRewardUnity(activity,selecBackuptAds,idReward,idBackupReward);
         }
     }
+
+    public static void ShowRewardUnityMediation(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
+        if (unityRewardedAd != null) {
+            if (unityRewardedAd != null)
+                unityRewardedAd.show(new IRewardedAdShowListener() {
+                    @Override
+                    public void onRewardedShowed(com.unity3d.mediation.RewardedAd rewardedAd) {
+                        // ad has showed
+                    }
+
+                    @Override
+                    public void onRewardedClicked(com.unity3d.mediation.RewardedAd rewardedAd) {
+                        // ad has been clicked
+                    }
+
+                    @Override
+                    public void onRewardedClosed(com.unity3d.mediation.RewardedAd rewardedAd) {
+                        // ad has been closed
+                        unlockreward=true;
+                    }
+
+                    @Override
+                    public void onRewardedFailedShow(com.unity3d.mediation.RewardedAd rewardedAd, ShowError error, String msg) {
+                        // ad has failed to show
+                        // use the message and ShowError enum to determine ad network and cause
+                    }
+
+                    @Override
+                    public void onUserRewarded(com.unity3d.mediation.RewardedAd rewardedAd, IReward reward) {
+                        // A reward may be issued based on the reward callback.
+                        // Timing of this event may vary depending on the ad network to serve the impression.
+                    }
+                });
+            LoadRewardUnityMediation(activity,selecBackuptAds,idReward,idBackupReward);
+        }
+    }
+
     public static void ShowRewardStartApp(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
         if (rewardedVideo.isReady()) {
             rewardedVideo.showAd();
@@ -2341,6 +2972,38 @@ public class AliendroidReward {
                     if (UnityAds.isReady (idBackupReward)) {
                         UnityAds.show (activity, idBackupReward);
                     }
+                    break;
+                case "UNITY-M":
+                    if (unityRewardedAd != null)
+                        unityRewardedAd.show(new IRewardedAdShowListener() {
+                            @Override
+                            public void onRewardedShowed(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has showed
+                            }
+
+                            @Override
+                            public void onRewardedClicked(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has been clicked
+                            }
+
+                            @Override
+                            public void onRewardedClosed(com.unity3d.mediation.RewardedAd rewardedAd) {
+                                // ad has been closed
+                                unlockreward=true;
+                            }
+
+                            @Override
+                            public void onRewardedFailedShow(com.unity3d.mediation.RewardedAd rewardedAd, ShowError error, String msg) {
+                                // ad has failed to show
+                                // use the message and ShowError enum to determine ad network and cause
+                            }
+
+                            @Override
+                            public void onUserRewarded(com.unity3d.mediation.RewardedAd rewardedAd, IReward reward) {
+                                // A reward may be issued based on the reward callback.
+                                // Timing of this event may vary depending on the ad network to serve the impression.
+                            }
+                        });
                     break;
             }
         }

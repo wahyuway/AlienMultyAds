@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.unity3d.mediation:mediation-sdk:0.2.1@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c0c24d8ee4c7340ee671025de84b44c9/transformed/mediation-sdk-0.2.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/069f192b0b12ce2ed8d31b0df0920c4c/transformed/mediation-sdk-0.2.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/069f192b0b12ce2ed8d31b0df0920c4c/transformed/mediation-sdk-0.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/069f192b0b12ce2ed8d31b0df0920c4c/transformed/mediation-sdk-0.2.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

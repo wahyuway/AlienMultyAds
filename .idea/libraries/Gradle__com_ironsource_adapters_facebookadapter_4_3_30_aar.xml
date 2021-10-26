@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.ironsource.adapters:facebookadapter:4.3.30@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/af95237ea04001ad0a1e0d4664753288/transformed/facebookadapter-4.3.30/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/af95237ea04001ad0a1e0d4664753288/transformed/facebookadapter-4.3.30/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/af95237ea04001ad0a1e0d4664753288/transformed/facebookadapter-4.3.30/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
