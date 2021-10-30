@@ -1,24 +1,24 @@
 package com.aliendroid.samplealienads;
 
 public class SettingAds {
-    public static String SELECT_ADS ="APPLOVIN-M";
-    public static String BACKUP_ADS = "IRON";
+    public static String SELECT_ADS ="UNITY-M";
+    public static String BACKUP_ADS = "APPLOVIN-D";
 
-    public static String MAIN_ADS_BANNER ="ca-app-pub-3940256099942544/6300978111c";
-    public static String BACKUP_ADS_BANNER="DefaultBanner";
+    public static String MAIN_ADS_BANNER ="banner";
+    public static String BACKUP_ADS_BANNER="ca-app-pub-3940256099942544/6300978111c";
 
-    public static String MAIN_ADS_INTERTITIAL ="video";
+    public static String MAIN_ADS_INTERTITIAL ="Interstitial_Android";
     public static String BACKUP_ADS_INTERTITIAL="Game_Screen";
 
-    public static String MAIN_ADS_REWARDS ="rewardedVideo";
-    public static String BACKUP_ADS_REWARDS="DefaultRewardedVideo";
+    public static String MAIN_ADS_REWARDS ="Rewarded_Android";
+    public static String BACKUP_ADS_REWARDS="Rewarded_Android";
 
     public static String OPEN_ADS_ADMOB ="/6499/example/app-open";
     public static String NATIVE_ADS_ADMOB ="/6499/example/native";
-    public static String INITIALIZE_SDK = "3963931";
+    public static String INITIALIZE_SDK = "4423925";
     public static String INITIALIZE_SDK_BACKUPADS = "107355779";
 
-    public static String HIGH_PAYING_KEYWORD1="Finance";
+    public static String HIGH_PAYING_KEYWORD1="gadget";
     public static String HIGH_PAYING_KEYWORD2="";
     public static String HIGH_PAYING_KEYWORD3="";
     public static String HIGH_PAYING_KEYWORD4="";

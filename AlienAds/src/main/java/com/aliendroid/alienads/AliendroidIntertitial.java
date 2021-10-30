@@ -148,11 +148,13 @@ public class AliendroidIntertitial {
             @Override
             public void onInterstitialLoaded(com.unity3d.mediation.InterstitialAd interstitialAd) {
                 // Execute logic when the ad successfully loads.
+
             }
 
             @Override
             public void onInterstitialFailedLoad(com.unity3d.mediation.InterstitialAd interstitialAd, LoadError loadError, String s) {
                 // Execute logic when the ad fails to load.
+                unityInterstitialAd = null;
             }
         };
 

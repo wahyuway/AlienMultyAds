@@ -112,7 +112,12 @@ public class MainActivity extends AppCompatActivity {
                 AliendroidIntertitial.LoadIntertitialUnity(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL);
                 AliendroidReward.LoadRewardUnity(MainActivity.this,BACKUP_ADS,MAIN_ADS_REWARDS,BACKUP_ADS_REWARDS);
                 break;
-
+            case "UNITY-M":
+                AliendroidInitialize.SelectAdsUnityMediation(MainActivity.this,BACKUP_ADS,INITIALIZE_SDK,INITIALIZE_SDK_BACKUPADS);
+                AliendroidBanner.SmallBannerUnity(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
+                AliendroidIntertitial.LoadIntertitialUnityMediation(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL);
+                AliendroidReward.LoadRewardUnityMediation(MainActivity.this,BACKUP_ADS,MAIN_ADS_REWARDS,BACKUP_ADS_REWARDS);
+                break;
         }
 
     }
@@ -148,6 +153,9 @@ public class MainActivity extends AppCompatActivity {
             case "UNITY" :
                 AliendroidIntertitial.ShowIntertitialUnity(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL, INTERVAL);
                 break;
+            case "UNITY-M" :
+                AliendroidIntertitial.ShowIntertitialUnityMediation(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL, INTERVAL);
+                break;
         }
 
 
@@ -169,6 +177,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "UNITY":
                 AliendroidReward.ShowRewardUnity(MainActivity.this, BACKUP_ADS, MAIN_ADS_REWARDS, BACKUP_ADS_REWARDS);
+                break;
+            case "UNITY-M":
+                AliendroidReward.ShowRewardUnityMediation(MainActivity.this, BACKUP_ADS, MAIN_ADS_REWARDS, BACKUP_ADS_REWARDS);
                 break;
 
 
