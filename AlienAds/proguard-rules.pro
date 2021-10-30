@@ -60,3 +60,5 @@ LineNumberTable, *Annotation*, EnclosingMethod
 { public protected *; }
 
 -keep class com.unity3d.mediation.** {*;}
+-keep class com.unity3d.mediation.**
+{ public protected *; }
