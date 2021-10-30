@@ -59,6 +59,4 @@ LineNumberTable, *Annotation*, EnclosingMethod
 -keep public class com.facebook.ads.**
 { public protected *; }
 
--keep class com.unity3d.mediation.** {
-   *;
-}
+-keep class com.unity3d.mediation.** {*;}
